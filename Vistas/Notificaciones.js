@@ -1,10 +1,12 @@
 import React from 'react';
 import { View,Text, Image } from 'react-native';
 //import { StyleSheet, Text, View } from 'react-native';
-const notificaciones =()=>{
+const notificaciones =(props)=>{
+    
+    
     return(
         <View>
-            <Text>Hola Notificacion</Text>
+            <Text style={{marginLeft:150, marginTop:300}}>Notificaciones</Text>
             
         </View>
     );

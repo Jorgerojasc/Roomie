@@ -1,35 +1,30 @@
 import React from 'react';
-import { StyleSheet, Text, View,Button } from 'react-native';
-import Inputs from './Diseño/Inputs';
-import Buttons from './Diseño/buttons'
-export default function App() {
-  
-  return (
-    <View style={styles.container}>
-      <Text style={styles.titulo}>Roomie</Text>
-      <Inputs placeholder={"Usuario"} icon={"user"} />
-      <Inputs placeholder={"Contraseña"} icon={"lock"} password={true} />
-      <Buttons texto={"Iniciar sesión"} estilo={"con_estilo"}
-      />
-      <Buttons texto={"Aún no te haz registrado? Registrate Aquí"} estilo={"sin_estilo"} />
-      <Buttons texto={"¿Haz olvidado tu contraseña?"} estilo={"sin_estilo"} />
-    </View>
-  );
-}
+import { createAppContainer } from 'react-navigation';
+import 'react-native-gesture-handler';
+import { createStackNavigator } from 'react-navigation-stack';
+import Registro from './Vistas/Registro'
+import Inicio from './Vistas/Inicio'
+import Drawer from './Vistas/Drawer'
 
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#43CA88',
-    justifyContent: 'center',
+
+const stack = createStackNavigator({
+  Login: {
+    screen: Inicio
   },
-  titulo:{
-    marginTop:-300,
-    color:'white',
-    fontFamily:'Zapfino',
-    fontWeight:'bold',
-    fontSize:30,
-    textAlign:'center'
+  Signup:{
+    screen: Registro
+  },
+  Principal:{
+    screen: Drawer
+  },
+},
+{
+  initialRouteName: 'Login',
+  defaultNavigationOptions: {
+     header:false,
   }
-});
+}
+);
+const app = createAppContainer(stack);
+export default app
