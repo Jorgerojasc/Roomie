@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { View,Text, StyleSheet,SafeAreaView,Image,ScrollView,TouchableOpacity } from 'react-native';
+import { View,Text, StyleSheet,SafeAreaView,Image,ScrollView,TouchableOpacity,Alert } from 'react-native';
 import {AsyncStorage} from 'react-native';
 import { DrawerItems} from 'react-navigation-drawer'
 import images from '../Imagenes/imagenes.js'
 import StarRating from 'react-native-star-rating';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import Icon from '@expo/vector-icons/MaterialCommunityIcons'
 const menu_usuario=(props)=>{
+    const { navigation } = props;
     const[nombre,setNombre]=useState("")
     const[id, setId]=useState("")
     const[foto,setFoto]=useState("")
@@ -27,7 +30,7 @@ const menu_usuario=(props)=>{
             }
         }
         datos_usuario()
-    },[setNombre],[setId],[setFoto],[setCalificacion],[setApellido])
+    },[nombre,foto,calificacion,apellido])
     var calificacion_2 =""
     if(calificacion == "0" || calificacion==0){//no sirve para ponerle el decimal en caso de que sea 0.0, es meramente decorativo
         calificacion_2=".0"
@@ -37,7 +40,23 @@ const menu_usuario=(props)=>{
         calificacion_2=""
     }
     var convertir_float = parseFloat(calificacion)
-    //console.log(images.Imagen[foto])
+    const cerrar_sesion=()=>{
+        Alert.alert(
+            "Roomie",
+            "Estas seguro de Cerrar sesión?",
+            [
+              {
+                text: "Cancelar",
+                
+              },
+              { text: "OK", onPress: () => {AsyncStorage.removeItem('calificacion');AsyncStorage.clear();navigation.replace('Login')} }
+            ],
+            { cancelable: false }
+        );
+      
+        // AsyncStorage.clear()
+        // navigation.navigate('Login')
+    }
     return(
         <SafeAreaView style={{flex:1}}>
             <View style={styles.container}>
@@ -62,15 +81,19 @@ const menu_usuario=(props)=>{
             </View>
             <ScrollView>
             <DrawerItems {...props}/>
+            <TouchableOpacity style={{height:hp(5)}} onPress={()=>cerrar_sesion()}>
+                <Icon name={'logout'} size={20} color={'#43CA88'} style={{marginTop:wp(3),width:wp(5),marginLeft:wp(5)}}/>
+                <Text style={{color:'#43CA88',fontWeight:'bold',marginLeft:wp(15.5),marginTop:wp(-5.5)}}>Cerrar Sesión</Text>
+            </TouchableOpacity>
             </ScrollView>
         </SafeAreaView>
     )
 }
 const styles = StyleSheet.create({
     container:{
-       height:180,
+       height:hp(22),
        backgroundColor:'#43CA88',
-       marginTop:-44
+       marginTop:wp(-12)
       
     },
     imagen:{

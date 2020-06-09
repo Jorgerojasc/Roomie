@@ -5,6 +5,7 @@ import 'react-native-gesture-handler';
 import { View,Text, StyleSheet,TouchableOpacity } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import Icon from '@expo/vector-icons/FontAwesome';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 const buttons  = (props)=>{
     const { navigation } = props;
     if(props.estilo=="con_estilo"){//en este if dara un estilo a los botones que arrojen dicho texto "con_estilo"
@@ -37,11 +38,11 @@ const styles = StyleSheet.create({
     button_container: {
       justifyContent: 'center',
       alignItems: 'center',
-      width: 210,
-      height: 50,
+      width: wp(50),
+      height: hp(7),
       backgroundColor: '#74d8a7',
       borderRadius: 5,
-      marginTop: 30
+      marginTop: wp(5)
     },
     button_text: {
       color: 'white',

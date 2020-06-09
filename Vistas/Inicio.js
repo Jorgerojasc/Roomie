@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View,Alert } from 'react-native';
 import Inputs from '../Diseño/Inputs'
 import Buttons from '../Diseño/buttons' 
-import {AsyncStorage} from 'react-native';
-
+import {AsyncStorage,TouchableWithoutFeedback,Keyboard} from 'react-native';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 const  Inicio = ( {navigation})=> {
 
   const datos=()=>{
@@ -67,6 +67,7 @@ const  Inicio = ( {navigation})=> {
   const[password,setpassword] = useState("")
   
     return (
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <View style={styles.container}>
     
         <Text style={styles.titulo}>Roomie</Text>
@@ -76,6 +77,7 @@ const  Inicio = ( {navigation})=> {
         <Buttons  texto={"Aún no te haz registrado? Registrate Aquí"} estilo={"sin_estilo"} ventana ={"Signup"}  />
         <Buttons texto={"¿Haz olvidado tu contraseña?"} estilo={"sin_estilo"} />
       </View>
+      </TouchableWithoutFeedback>
       //sirve para crear nuestros botones, ya con un estilo definido, sin tener que usar demasidos estilos
     );
 }
@@ -87,7 +89,7 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
     },
     titulo:{
-      marginTop:-300,
+      marginTop:wp(-70),
       color:'white',
       fontFamily:'Zapfino',
       fontWeight:'bold',

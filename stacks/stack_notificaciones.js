@@ -2,11 +2,8 @@ import React from 'react';
 import { createAppContainer } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack';
 import Notificaciones from '../Vistas/Notificaciones'
-import { DrawerActions } from 'react-navigation-drawer';
-import Icon from '@expo/vector-icons/FontAwesome';
-import { Button } from 'react-native-paper';
-import Headers from '../Diseño/Headers'
-
+import Headers from '../Diseño/Secundary_Header'
+import Menu from '../Vistas/Menu'
 const stack = createStackNavigator({
   Notificaciones:{
       screen:Notificaciones,
@@ -18,7 +15,11 @@ const stack = createStackNavigator({
       }
     
   },
+  Roomie:{
+    screen:Menu
+  },
+  initialRouteName:'Notificaciones'
 
-},);
+});
 const Stackapp= createAppContainer(stack);
 export default Stackapp

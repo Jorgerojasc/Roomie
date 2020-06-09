@@ -4,6 +4,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import Menu from '../Vistas/Menu'
 import Headers from '../Diseño/Headers'
 
+
 const stack = createStackNavigator({
   Roomie:{
       screen:Menu,
@@ -14,6 +15,7 @@ const stack = createStackNavigator({
         }
       }
   },
+  
 
 },);
 const Stackapp= createAppContainer(stack);

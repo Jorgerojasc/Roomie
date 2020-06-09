@@ -1,14 +1,18 @@
 import React from 'react';
-import { View,Text, Image } from 'react-native';
+import { View,Text, Image,TextInput,TouchableWithoutFeedback,Keyboard,KeyboardAvoidingView } from 'react-native';
 //import { StyleSheet, Text, View } from 'react-native';
 const notificaciones =(props)=>{
     
-    
+    //es por el view
     return(
-        <View>
-            <Text style={{marginLeft:150, marginTop:300}}>Notificaciones</Text>
+        
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss} >
             
-        </View>
+            <View style={{height:'100%'}}>
+                <Text >Notificaciones</Text>
+            </View>
+        </TouchableWithoutFeedback>
+       
     );
 }
 export default notificaciones;

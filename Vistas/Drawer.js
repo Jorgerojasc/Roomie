@@ -1,18 +1,20 @@
-import React, { useState, Component } from 'react';
-import { createAppContainer } from 'react-navigation';
-import { createDrawerNavigator, DrawerItems, DrawerActions} from 'react-navigation-drawer'
-import { View,Text, StyleSheet} from 'react-native';
-import {AsyncStorage} from 'react-native';
-import Notificaciones from './Notificaciones'
-import stacknavigator from './Principal'
+import React from 'react';
+import { createAppContainer,createSwitchNavigator } from 'react-navigation';
+import { createDrawerNavigator} from 'react-navigation-drawer'
+import stack_principal from '../stacks/Principal'
 import stack_notificaciones from '../stacks/stack_notificaciones'
+import stack_Anunciar from '../stacks/stack_anunciar';
+import stack_Agenda from '../stacks/stack_agenda'
 import ContentComponent from '../Vistas/ContentComponent'
 import Icon from '@expo/vector-icons/FontAwesome';
+import Icon2 from '@expo/vector-icons/Octicons';
+import Icon3 from '@expo/vector-icons/SimpleLineIcons'
+import App from '../App'
 
 const Drawstack = createDrawerNavigator({
    
-    Principal:{
-       screen: stacknavigator,
+   Principal:{
+       screen: stack_principal,
 
        navigationOptions:{
           drawerIcon:()=><Icon name={"home"} size={20} color={'#43CA88'}/>
@@ -22,10 +24,22 @@ const Drawstack = createDrawerNavigator({
     Notificaciones:{
        screen: stack_notificaciones,
        navigationOptions:{
-          drawerIcon:()=><Icon name={"bell"} size={20} color={'#43CA88'}/>
+          drawerIcon:()=><Icon name={"bell"} size={20} color={'#43CA88'} onPress={()=>alert("hola")}/>
        }
 
+   },
+   Anunciar:{
+      screen: stack_Anunciar,
+      navigationOptions:{
+         drawerIcon:()=><Icon2 name={"megaphone"} size={20} color={'#43CA88'}/>
       }
+   },
+   Agenda:{
+      screen:stack_Agenda,
+      navigationOptions:{
+         drawerIcon:()=><Icon3 name={"notebook"} size={20} color={'#43CA88'} />
+      }
+   },
  },
  {
     initialRouteName:'Principal',
@@ -38,17 +52,20 @@ const Drawstack = createDrawerNavigator({
        },
        itemStyle:{
           marginTop:8,
-       }
+       },
+       
     },
-
-
-   
-
  })
 
-const Appdraw = createAppContainer(Drawstack);
-export  default function Drawer(){
-    return(<Appdraw/>)
-}
+const myswitch = createSwitchNavigator({
+   Drawer:{
+      screen:Drawstack
+   },
+   logout:{
+      screen:App
+   }
+})
+const Appdraw = createAppContainer(myswitch);
+export default Appdraw
 
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, TextInput, StyleSheet } from 'react-native';
 import Icon from '@expo/vector-icons/FontAwesome';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 export default function Inputs(props) {//validar que los campos esten llenos
     
     if(props.fecha_valida == "invalida" ){
@@ -26,16 +27,16 @@ export default function Inputs(props) {//validar que los campos esten llenos
 
 const styles = StyleSheet.create({
     input_container: {
-        width: '90%',
+        width: wp('90%'),
         flexDirection: 'row',
         alignItems: 'center',
         borderColor: 'transparent',
         borderWidth: 0.5,
         padding: 5,
-        marginTop: 10,
-        height:35,
-        marginLeft:15,
-        marginTop:30,
+        marginTop: wp(10),
+        height:hp(4),
+        marginLeft:wp(5),
+        marginTop:wp(5),
         backgroundColor:'#278b5b',
         borderRadius:10
     },
